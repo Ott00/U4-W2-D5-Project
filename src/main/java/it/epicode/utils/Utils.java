@@ -27,7 +27,6 @@ public class Utils {
                     faker.number().numberBetween(2020, 2024),
                     faker.number().numberBetween(50, 1000),
                     faker.name().firstName(),
-                    faker.name().lastName(),
                     faker.book().genre());
         };
 

@@ -2,14 +2,12 @@ package it.epicode.classes;
 
 public class Book extends Catalog {
     private String authorName;
-    private String authorSurname;
     private String genre;
 
 
-    public Book(String title, int yearOfPublication, int numberOfPages, String authorName, String authorSurname, String genre) {
+    public Book(String title, int yearOfPublication, int numberOfPages, String authorName, String genre) {
         super(title, yearOfPublication, numberOfPages);
         this.authorName = authorName;
-        this.authorSurname = authorSurname;
         this.genre = genre;
     }
 
@@ -19,14 +17,6 @@ public class Book extends Catalog {
 
     public void setAuthorName(String authorName) {
         this.authorName = authorName;
-    }
-
-    public String getAuthorSurname() {
-        return authorSurname;
-    }
-
-    public void setAuthorSurname(String authorSurname) {
-        this.authorSurname = authorSurname;
     }
 
     public String getGenre() {
@@ -44,8 +34,7 @@ public class Book extends Catalog {
                 ", title='" + super.getTitle() + '\'' +
                 ", yearOfPublication=" + super.getYearOfPublication() +
                 ", numberOfPages=" + super.getNumberOfPages() +
-                "authorName='" + authorName + '\'' +
-                ", authorSurname='" + authorSurname + '\'' +
+                ", authorName='" + authorName + '\'' +
                 ", genre='" + genre + '\'' +
                 '}';
     }

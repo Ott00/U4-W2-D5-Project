@@ -1,10 +1,14 @@
 package it.epicode;
 
+import org.apache.commons.io.FileUtils;
 import it.epicode.classes.Book;
 import it.epicode.classes.Catalog;
 import it.epicode.classes.Magazine;
 import it.epicode.enums.Frequency;
 
+import java.io.File;
+import java.io.IOException;
+import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
@@ -18,6 +22,8 @@ public class Archive {
         int numberOfElement = 5;
         createCatalog(numberOfElement, catalogList);
         catalogList.forEach(System.out::println);
+
+        saveToDisk();
 
         Scanner scanner = new Scanner(System.in);
 //        System.out.println("Che elemento vuoi eliminare?");
@@ -34,14 +40,14 @@ public class Archive {
 //        int year = Integer.parseInt(scanner.nextLine());
 //        searchByYearOfPublication(year);
 
-        System.out.println("Che autore cerchi?");
-        String author = scanner.nextLine();
-        searchByAuthor(author);
+//        System.out.println("Che autore cerchi?");
+//        String author = scanner.nextLine();
+//        searchByAuthor(author);
     }
 
     //Crea un libro
-    private static void addElement(String title, int yearOfPublication, int numberOfPages, String authorName, String authorSurname, String genre) {
-        Book book = new Book(title, yearOfPublication, numberOfPages, authorName, authorSurname, genre);
+    private static void addElement(String title, int yearOfPublication, int numberOfPages, String authorName, String genre) {
+        Book book = new Book(title, yearOfPublication, numberOfPages, authorName, genre);
         catalogList.add(book);
     }
 
@@ -82,6 +88,34 @@ public class Archive {
             System.out.println("Non esiste questo autore");
         } else {
             authorBooks.forEach(System.out::println);
+        }
+    }
+
+    private static void saveToDisk() {
+        File file = new File("./src/output.txt");
+        StringBuilder dataToWrite = new StringBuilder();
+
+        for (Catalog catalogElement : catalogList) {
+            StringBuilder typeData = new StringBuilder();
+            if (catalogElement instanceof Book) {
+                typeData.append(((Book) catalogElement).getAuthorName()).append("@")
+                        .append(((Book) catalogElement).getGenre());
+            }
+            if (catalogElement instanceof Magazine) {
+                typeData.append(((Magazine) catalogElement).getFrequency());
+            }
+            dataToWrite
+                    .append(catalogElement.getCodISBN()).append("@")
+                    .append(catalogElement.getTitle()).append("@")
+                    .append(catalogElement.getYearOfPublication()).append("@")
+                    .append(catalogElement.getNumberOfPages()).append("@")
+                    .append(typeData).append("#");
+        }
+        try {
+            FileUtils.writeStringToFile(file, String.valueOf(dataToWrite), StandardCharsets.UTF_8);
+            System.out.println("Dati trascritti nel file output.txt");
+        } catch (IOException e) {
+            throw new RuntimeException(e);
         }
     }
 }
