@@ -1,10 +1,10 @@
 package it.epicode;
 
-import org.apache.commons.io.FileUtils;
 import it.epicode.classes.Book;
-import it.epicode.classes.Catalog;
+import it.epicode.baseClasses.Catalog;
 import it.epicode.classes.Magazine;
 import it.epicode.enums.Frequency;
+import org.apache.commons.io.FileUtils;
 
 import java.io.File;
 import java.io.IOException;
@@ -19,30 +19,32 @@ public class Archive {
     static List<Catalog> catalogList = new ArrayList<>();
 
     public static void main(String[] args) {
-        int numberOfElement = 5;
+
+        int numberOfElement = 3; // Crea n Book e n Magazine
         createCatalog(numberOfElement, catalogList);
         catalogList.forEach(System.out::println);
 
-        saveToDisk();
 
         Scanner scanner = new Scanner(System.in);
-//        System.out.println("Che elemento vuoi eliminare?");
-//        long id = Long.parseLong(scanner.nextLine());
-//        removeElement(id);
-//
-//        catalogList.forEach(System.out::println);
+        System.out.println("Che elemento vuoi eliminare?");
+        long id = Long.parseLong(scanner.nextLine());
+        removeElement(id);
 
-//        System.out.println("Che elemento vuoi cercare?");
-//        long id2 = Long.parseLong(scanner.nextLine());
-//        searchByISBN(id2);
+        catalogList.forEach(System.out::println);
 
-//        System.out.println("Che anno vuoi cercare?");
-//        int year = Integer.parseInt(scanner.nextLine());
-//        searchByYearOfPublication(year);
+        System.out.println("Che elemento vuoi cercare?");
+        long id2 = Long.parseLong(scanner.nextLine());
+        searchByISBN(id2);
 
-//        System.out.println("Che autore cerchi?");
-//        String author = scanner.nextLine();
-//        searchByAuthor(author);
+        System.out.println("Che anno vuoi cercare?");
+        int year = Integer.parseInt(scanner.nextLine());
+        searchByYearOfPublication(year);
+
+        System.out.println("Che autore cerchi?");
+        String author = scanner.nextLine();
+        searchByAuthor(author);
+
+        saveToDisk();
     }
 
     //Crea un libro
@@ -51,7 +53,7 @@ public class Archive {
         catalogList.add(book);
     }
 
-    //Crea un magazine
+    //Crea un magazine con overload del metodo
     private static void addElement(String title, int yearOfPublication, int numberOfPages, Frequency frequency) {
         Magazine magazine = new Magazine(title, yearOfPublication, numberOfPages, frequency);
         catalogList.add(magazine);
@@ -118,4 +120,24 @@ public class Archive {
             throw new RuntimeException(e);
         }
     }
+
+
+//    private static List<Catalog> findToDisk() throws IOException {
+//        File file = new File("prova.txt");
+//        String fileString = FileUtils.readFileToString(file, "UTF-8");
+//
+//        List<String> splitElementString = Arrays.asList(fileString.split("#"));
+//        List<Catalog> storage = new ArrayList<>();
+//
+//        splitElementString.stream().forEach(stringa -> {
+//            String[] productInfos = stringa.split("@");
+//            if (productInfos.length == 5) {
+//                addElement(Long.parseLong(productInfos[0]), productInfos[1], Integer.parseInt(productInfos[2]), Integer.parseInt(productInfos[3]), Frequency.valueOf(productInfos[4]));
+//            } else if (productInfos.length == 6) {
+//                addElement(Long.parseLong(productInfos[0]), productInfos[1], Integer.parseInt(productInfos[2]), Integer.parseInt(productInfos[3]), productInfos[4], productInfos[5]);
+//            }
+//        });
+//
+//        return storage;
+//    }
 }

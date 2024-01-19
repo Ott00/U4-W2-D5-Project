@@ -1,13 +1,13 @@
-package it.epicode.classes;
+package it.epicode.baseClasses;
 
 import java.util.Random;
 
-public abstract class Catalog {
+public class Catalog {
     private Random random = new Random();
-    private long CodISBN;
-    private String title;
-    private int yearOfPublication;
-    private int numberOfPages;
+    protected long CodISBN;
+    protected String title;
+    protected int yearOfPublication;
+    protected int numberOfPages;
 
     public Catalog(String title, int yearOfPublication, int numberOfPages) {
         this.CodISBN = random.nextLong(100000, 999999);

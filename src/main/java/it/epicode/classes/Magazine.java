@@ -1,5 +1,6 @@
 package it.epicode.classes;
 
+import it.epicode.baseClasses.Catalog;
 import it.epicode.enums.Frequency;
 
 public class Magazine extends Catalog {
@@ -21,10 +22,10 @@ public class Magazine extends Catalog {
     @Override
     public String toString() {
         return "Magazine{" +
-                "CodISBN=" + super.getCodISBN() +
-                ", title='" + super.getTitle() + '\'' +
-                ", yearOfPublication=" + super.getYearOfPublication() +
-                ", numberOfPages=" + super.getNumberOfPages() +
+                " CodISBN=" + CodISBN +
+                ", title='" + title + '\'' +
+                ", yearOfPublication=" + yearOfPublication +
+                ", numberOfPages=" + numberOfPages +
                 ", frequency=" + frequency +
                 '}';
     }

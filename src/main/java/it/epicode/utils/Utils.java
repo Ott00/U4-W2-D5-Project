@@ -2,7 +2,7 @@ package it.epicode.utils;
 
 import com.github.javafaker.Faker;
 import it.epicode.classes.Book;
-import it.epicode.classes.Catalog;
+import it.epicode.baseClasses.Catalog;
 import it.epicode.classes.Magazine;
 import it.epicode.enums.Frequency;
 
@@ -12,9 +12,9 @@ import java.util.Random;
 import java.util.function.Supplier;
 
 public class Utils {
-    public static <T extends Enum<?>> T getRandomEnum(Class<T> enumeration) {
+    public static Frequency getRandomEnum(Class<Frequency> enumeration) {
         Random random = new Random();
-        T[] values = enumeration.getEnumConstants();
+        Frequency[] values = enumeration.getEnumConstants();
         return values[random.nextInt(values.length)];
     }
 

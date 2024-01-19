@@ -1,9 +1,10 @@
 package it.epicode.classes;
 
+import it.epicode.baseClasses.Catalog;
+
 public class Book extends Catalog {
     private String authorName;
     private String genre;
-
 
     public Book(String title, int yearOfPublication, int numberOfPages, String authorName, String genre) {
         super(title, yearOfPublication, numberOfPages);
@@ -30,13 +31,12 @@ public class Book extends Catalog {
     @Override
     public String toString() {
         return "Book{" +
-                "CodISBN=" + super.getCodISBN() +
-                ", title='" + super.getTitle() + '\'' +
-                ", yearOfPublication=" + super.getYearOfPublication() +
-                ", numberOfPages=" + super.getNumberOfPages() +
+                " CodISBN=" + CodISBN +
+                ", title='" + title + '\'' +
+                ", yearOfPublication=" + yearOfPublication +
+                ", numberOfPages=" + numberOfPages +
                 ", authorName='" + authorName + '\'' +
                 ", genre='" + genre + '\'' +
                 '}';
     }
-
 }
