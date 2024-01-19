@@ -21,23 +21,19 @@ public class Utils {
     public static void createCatalog(int numberOfElement, List<Catalog> catalogList) {
         Faker faker = new Faker(Locale.ITALY);
 
-        Supplier<Book> bookSupplier = () -> {
-            return new Book(
-                    faker.book().title(),
-                    faker.number().numberBetween(2020, 2024),
-                    faker.number().numberBetween(50, 1000),
-                    faker.name().firstName(),
-                    faker.book().genre());
-        };
+        Supplier<Book> bookSupplier = () -> new Book(
+                faker.book().title(),
+                faker.number().numberBetween(2020, 2024),
+                faker.number().numberBetween(50, 1000),
+                faker.name().firstName(),
+                faker.book().genre());
 
-        Supplier<Magazine> magazineSupplier = () -> {
-            return new Magazine(
-                    faker.book().title(),
-                    faker.number().numberBetween(2020, 2024),
-                    faker.number().numberBetween(50, 1000),
-                    getRandomEnum(Frequency.class)
-            );
-        };
+        Supplier<Magazine> magazineSupplier = () -> new Magazine(
+                faker.book().title(),
+                faker.number().numberBetween(2020, 2024),
+                faker.number().numberBetween(50, 1000),
+                getRandomEnum(Frequency.class)
+        );
 
         for (int i = 0; i < numberOfElement; i++) {
             catalogList.add(bookSupplier.get());
