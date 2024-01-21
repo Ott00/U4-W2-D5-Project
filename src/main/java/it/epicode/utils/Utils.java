@@ -42,8 +42,5 @@ public class Utils {
         for (int i = 0; i < numberOfElement; i++) {
             catalogList.add(magazineSupplier.get());
         }
-
     }
-
-
 }
